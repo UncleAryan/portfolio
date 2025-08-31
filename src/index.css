@@ -87,7 +87,7 @@
   .dark {
     --background: 222 47% 4%;
     --foreground: 213 31% 91%;
-    --card: 222 47% 91%;
+    --card: 222 47% 10%;
     --primary: 250 65% 65%;
     --primary-foreground: 213 31% 91%;
     --border: 217 33% 20%;
@@ -138,7 +138,7 @@
 }
 
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-transform duration-300 hover:scale-[1.05] hover:shadow-lg;
 }
 
 @utility gradient-border {
@@ -149,8 +149,15 @@
 }
 
 @utility custom-button {
-  @apply px-6 py-2 rounded-full bg-primary 
+  @apply px-6 py-2 rounded-full bg-primary
   text-primary-foreground font-medium transition-all 
+  duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] 
+  hover:scale-105 active:scale-95;
+}
+
+@utility custom-button-contrast {
+  @apply px-6 py-2 rounded-full bg-primary/10
+  text-primary font-medium transition-all 
   duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] 
   hover:scale-105 active:scale-95;
 }
