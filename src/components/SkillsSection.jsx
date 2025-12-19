@@ -10,9 +10,10 @@ const skills = [
     {name: "C", level: 90, category: "core-languages"},
     {name: "Python", level: 100, category: "core-languages"},
     {name: "Assembly", level: 85, category: "core-languages"},
-    {name: "C++", level: 95, category: "core-languages"},
     {name: "C#", level: 95, category: "core-languages"},
     {name: "PHP", level: 85, category: "core-languages"},
+    {name: "Go", level: 70, category: "core-languages"},
+    {name: "Lisp", level: 70, category: "core-languages"},
 
     {name: "React", level: 80, category: "frameworks"},
     {name: "Tailwind CSS", level: 90, category: "frameworks"},
