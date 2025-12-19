@@ -2,7 +2,7 @@ import { Briefcase, Code, User } from "lucide-react"
 import { cn } from "../lib/utils"
 
 export const AboutSection = () => {
-    return <section id="#about" className={cn("py-24", "px-4", "relative")}>
+    return <section id='about' className={cn("py-24", "px-4", "relative")}>
         <div className={cn("container", "mx-auto", "max-w-5xl")}>
             <h2 className={cn("text-3xl", "md:text-4xl", "font-bold", "mb-12", "text-center")}>
                 About <span className="text-primary"> Me</span>
@@ -29,7 +29,8 @@ export const AboutSection = () => {
 
                     <div className={cn("flex", "flex-col", "sm:flex-row", "gap-4", "pt-4", "justify-center")}>
                         <a href="#contact" className="custom-button">Contact Me</a>
-                        <a href="" className="custom-button-contrast">Download CV</a>
+                        <a href="../public/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" target="_blank">View CV</a>
+                        <a href="../public/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" download>Download CV</a>
                     </div>
                 </div>
 
