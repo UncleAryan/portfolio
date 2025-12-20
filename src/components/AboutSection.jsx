@@ -29,8 +29,8 @@ export const AboutSection = () => {
 
                     <div className={cn("flex", "flex-col", "sm:flex-row", "gap-4", "pt-4", "justify-center")}>
                         <a href="#contact" className="custom-button">Contact Me</a>
-                        <a href="/portfolio/public/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" target="_blank">View CV</a>
-                        <a href="/portfolio/public/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" download>Download CV</a>
+                        <a href="/portfolio/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" target="_blank">View CV</a>
+                        <a href="/portfolio/Aryan_Panchal_Resume.pdf" className="custom-button-contrast" download>Download CV</a>
                     </div>
                 </div>
 
