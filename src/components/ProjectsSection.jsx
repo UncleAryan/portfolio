@@ -1,11 +1,13 @@
 import { ArrowRight, Github } from "lucide-react";
 
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
 const projects = [
     {
         id: 1,
         title: "Homie Hand",
         description: "A 2D game engine made entirely in Java from scratch with custom hand-drawn spritesheets.",
-        image: "/project_screenshots/homiehand_gameplay.png",
+        image: `${BASE_URL}project_screenshots/homiehand_gameplay.png`,
         tags: ["Java", "Object-Oriented Programming", "Game Loop", "Entity Management", "Input Handling", "Sprite Animation", "Scene Management", "Collision Detection System"],
         github_url: "https://github.com/UncleAryan/HomieHand"
     },
@@ -13,7 +15,7 @@ const projects = [
         id: 2,
         title: "Custom 3D Rendering Pipeline with Unity",
         description: "A custom-built 3D rendering pipeline implemented from scratch in Unity3D, demonstrating fundamental computer graphics concepts including matrix transformations, projection, and rasterization using only basic OpenGL line drawing.",
-        image: "/project_screenshots/custom_3d_rendering_pipeline_example.png",
+        image: `${BASE_URL}project_screenshots/custom_3d_rendering_pipeline_example.png`,
         tags: ["C#", "Unity Game Engine", "Linear Algebra", "Agile Methodologies", "Version Control"],
         github_url: "https://github.com/UncleAryan/custom-3d-rendering-pipeline"
     },
@@ -21,7 +23,7 @@ const projects = [
         id: 3,
         title: "Autonomous Snake Game",
         description: "Classic Snake game that plays itself using implementation of A* pathfinding to calculate shortest path to food while dynamically avoiding collisions in real time.",
-        image: "/project_screenshots/snake_ai_example.png",
+        image: `${BASE_URL}project_screenshots/snake_ai_example.png`,
         tags: ["C#", "Unity Game Engine", "Advanced Data Structures", "Artifical Intelligence through Heuristics"],
         github_url: "https://github.com/UncleAryan/Snake-AI"
     }
