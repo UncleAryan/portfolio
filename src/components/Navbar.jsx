@@ -3,7 +3,7 @@ import { cn } from '../lib/utils.js';
 import { X, Menu } from 'lucide-react';
 
 const items = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "#" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setHasScrolled(window.screenY > 10);
+            setHasScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
