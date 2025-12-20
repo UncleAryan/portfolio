@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; // Changed here
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,13 +6,13 @@ import { Toaster } from "@/components/ui/toaster";
 function App() {
   return (
     <>
-    <Toaster />
-      <BrowserRouter>
+      <Toaster />
+      <Router>  {/* Now using HashRouter */}
         <Routes>
-          <Route index element={<Home/>}/>
+          <Route path="/" element={<Home/>}/>  {/* Changed from index to path="/" */}
           <Route path="*" element={<NotFound/>}/>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   )
 }
