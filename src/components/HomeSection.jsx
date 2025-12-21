@@ -13,7 +13,7 @@ export const HomeSection = () => {
                         </h1>
 
                         <p className={cn("text-lg", "md:text-xl", "text-muted-foreground", "max-2-2xl", "mx-auto", "opacity-0", "animate-fade-in-delay-4")}>
-                            An aspiring engineer who has is enthusiastic about being at the forefront 
+                            An aspiring engineer who is enthusiastic about being at the forefront 
                             of modern technological revolution and drive innovation through applying
                             my strong foundation in engineering principles, along with in-depth understanding
                             of popular programming languages and their frameworks, data structures, and algorithms.

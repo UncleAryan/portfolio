@@ -5,24 +5,90 @@ import {
   Phone,
   Send,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
     const { toast } = useToast();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
 
-    const handleSubmit = (e) => {
+    const [formStatus, setFormStatus] = useState({
+        submitting: false,
+        success: false,
+        error: false,
+        message: "",
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData( (prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        setIsSubmitting(true);
-        setTimeout( () => {
-            toast({
-                title: "Message Sent!",
-                description: "Thank you for your message. I will get back to you as soon as possible!",
+
+        setFormStatus({
+            submitting: true,
+            success: false,
+            error: false,
+            message: "",
+        });
+
+        try {
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                }
+            );
+
+            const successMessage = "Thank you for your message. I will get back to you as soon as possible!";
+
+            setFormStatus( {
+                submitting: false,
+                success: true,
+                error: false,
+                message: successMessage,
             });
-            setIsSubmitting(false);
-        }, 1500);
+
+            toast({
+                title: "Message Sent Successfully!",
+                description: successMessage,
+            });
+            
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+            });
+        } catch (error) {
+            const errorMessage = "Please try again at a later time. Sorry for the inconvenience.";
+
+            setFormStatus( {
+                submitting: false,
+                success: false,
+                error: true,
+                message: errorMessage,
+            });
+
+            toast({
+                title: "Message was NOT sent successfully.",
+                description: errorMessage,
+                variant: "destructive",
+            });
+        }
     };
 
     return (
@@ -92,31 +158,31 @@ export const ContactSection = () => {
             </div>
                     
 
-                    <div className="bg-card p-8 rounded-lg shadow-xs" onSubmit={handleSubmit}>
-                        <p className="text-sm mb-4 font-semibold">
-                            DISCLAIMER: This is NOT fully functional yet. It is only a UI design concept so far. It WILL NOT
-                            send me your message. Until I integrate EmailJS, this is for reference only :)
-                        </p>
+                    <div className="bg-card p-8 rounded-lg shadow-xs">
                         <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="full-name" className="block text-sm font-medium mb-2">Full Name</label>
                                 <input type="text" 
-                                       id="full-name"
-                                       name="full-name"
+                                       id="name"
+                                       name="name"
+                                       value={formData.name}
                                        required
                                        className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" 
-                                       placeholder="Your First & Last Name Here..." />
+                                       placeholder="Your First & Last Name Here..." 
+                                       onChange={handleInputChange} />
                             </div>
 
                             <div>
                                 <label htmlFor="email-address" className="block text-sm font-medium mb-2">Email Address</label>
                                 <input type="email" 
-                                       id="email-address"
-                                       name="email-address"
+                                       id="email"
+                                       name="email"
+                                       value={formData.email}
                                        required
                                        className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary" 
-                                       placeholder="Your Email Here..." />
+                                       placeholder="Your Email Here..." 
+                                       onChange={handleInputChange} />
                             </div>
 
                             <div>
@@ -124,15 +190,17 @@ export const ContactSection = () => {
                                 <textarea 
                                        id="message"
                                        name="message"
+                                       value={formData.message}
                                        required
-                                       className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" 
-                                       placeholder="Your Message Here..." />
+                                       className="w-full h-64 px-4 py-6 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none" 
+                                       placeholder="Your Message Here..." 
+                                       onChange={handleInputChange} />
                             </div>
 
                             <button type="submit" 
-                                    disabled={isSubmitting}
+                                    disabled={formStatus.submitting}
                                     className="custom-button w-full flex items-center justify-center gap-2">
-                                        {isSubmitting ? "Sending..." : "Send Message"}
+                                        {formStatus.submitting ? "Sending..." : "Send Message"}
                                         <Send size={16} />
                             </button>
                         </form>
