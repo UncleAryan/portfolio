@@ -73,7 +73,7 @@ export const ContactSection = () => {
                 email: "",
                 message: "",
             });
-        } catch (error) {
+        } catch {
             const errorMessage = "Please try again at a later time. Sorry for the inconvenience.";
 
             setFormStatus( {
