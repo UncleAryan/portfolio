@@ -22,19 +22,25 @@ export const Background = () => {
     }, []);
 
     useEffect(() => {
-        initLeaves();
-        initRain();
-        initClouds();
-
-        const handleResize = () => {
-            initLeaves();
+        if (isDark) {
             initRain();
             initClouds();
+        } else {
+            initLeaves();
+        }
+
+        const handleResize = () => {
+            if (isDark) {
+                initRain();
+                initClouds();
+            } else {
+                initLeaves();
+            }
         };
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [isDark]);
 
     const initLeaves = () => {
         const count = Math.max(
